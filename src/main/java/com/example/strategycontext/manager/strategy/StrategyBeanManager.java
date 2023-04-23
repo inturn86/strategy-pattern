@@ -6,7 +6,6 @@ import com.example.strategycontext.manager.strategy.context.StrategyBeanContext;
 import com.example.strategycontext.manager.strategy.inventoryallocation.IInventoryAllocation;
 import com.example.strategycontext.manager.strategy.pickingReleaseInstructionSelection.IPickingReleaseInstructionSelection;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,14 +13,14 @@ import org.springframework.stereotype.Component;
 public class StrategyBeanManager {
 
 	//전략 패턴 get
-	public IInventoryAllocation inventoryAllocation;
-	public IPickingReleaseInstructionSelection pickingReleaseInstructionSelection;
+	public static IInventoryAllocation inventoryAllocation;
+	public static IPickingReleaseInstructionSelection pickingReleaseInstructionSelection;
 
-	public void setInventoryAllocationType(String type) {
+	public static void setInventoryAllocationType(String type) {
 		inventoryAllocation = StrategyBeanContext.inventoryAllocationBeanMap.get(type);
 	}
 
-	public void setPickingReleaseInstructionSelection(String type) {
+	public static void setPickingReleaseInstructionSelection(String type) {
 		pickingReleaseInstructionSelection = StrategyBeanContext.pickingReleaseInstructionSelection.get(type);
 	}
 

@@ -13,20 +13,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class StrategyController {
 
-	private final StrategyBeanManager strategyBeanManager;
 
 	@GetMapping("/inventoryAllocationType/{strategy}")
 	public void setInventoryAllocationTypeStrategy(@PathVariable String strategy) {
-		strategyBeanManager.setInventoryAllocationType(strategy);
+		StrategyBeanManager.setInventoryAllocationType(strategy);
 	}
 
 	@GetMapping("/pickingReleaseInstructionSelectPriority/{strategy}")
 	public void setPickingReleaseInstructionSelectPriority(@PathVariable String strategy) {
-		strategyBeanManager.setPickingReleaseInstructionSelection(strategy);
+		StrategyBeanManager.setPickingReleaseInstructionSelection(strategy);
 	}
 
 	@GetMapping("/pickingReleaseInstructionSelectPriority/check")
 	public void getPickingReleaseInstructionSelectPriority(){
-		strategyBeanManager.getPickingReleaseInstructionSelection().selectPickingReleaseInstruction("s");
+		StrategyBeanManager.pickingReleaseInstructionSelection.selectPickingReleaseInstruction("s");
+	}
+	@GetMapping("/inventoryAllocationType/check")
+	public void getInventoryAllocationType(){
+		StrategyBeanManager.inventoryAllocation.generateInventoryAllocation();
 	}
 }
