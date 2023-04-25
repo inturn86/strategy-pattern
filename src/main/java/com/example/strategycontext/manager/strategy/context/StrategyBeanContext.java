@@ -1,18 +1,18 @@
 package com.example.strategycontext.manager.strategy.context;
 
+import com.example.strategycontext.define.strategy.EInventoryAllocationType;
 import com.example.strategycontext.manager.strategy.anno.InventoryAllocationType;
 import com.example.strategycontext.manager.strategy.anno.PickingReleaseInstructionSelectionType;
 import com.example.strategycontext.manager.strategy.inventoryallocation.IInventoryAllocation;
 import com.example.strategycontext.manager.strategy.pickingReleaseInstructionSelection.IPickingReleaseInstructionSelection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
-import org.springframework.aop.support.AopUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -25,6 +25,9 @@ public class StrategyBeanContext {
 	public static Map<String, IInventoryAllocation> inventoryAllocationBeanMap = new ConcurrentHashMap<>();
 	public static Map<String, IPickingReleaseInstructionSelection> pickingReleaseInstructionSelection = new ConcurrentHashMap<>();
 	public void init(){
+		//EInventoryAllocationType.values()
+		//EInventoryAllocationType s = EnumFindUtils.valueOfWithNotException(EInventoryAllocationType.class, "test");
+		EInventoryAllocationType s = EnumUtils.getEnum(EInventoryAllocationType.class, "Test", EInventoryAllocationType.LARGE_INVENTORY);
 		inventoryAllocationBeanMap = getBeanMap(IInventoryAllocation.class, InventoryAllocationType.class);
 		pickingReleaseInstructionSelection = getBeanMap(IPickingReleaseInstructionSelection.class, PickingReleaseInstructionSelectionType.class);
 	}

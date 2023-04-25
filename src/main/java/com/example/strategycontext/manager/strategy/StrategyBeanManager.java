@@ -17,6 +17,7 @@ public class StrategyBeanManager {
 	public static IPickingReleaseInstructionSelection pickingReleaseInstructionSelection;
 
 	public static void setInventoryAllocationType(String type) {
+		//EInventoryAllocationType.valueOf(type);
 		inventoryAllocation = StrategyBeanContext.inventoryAllocationBeanMap.get(type);
 	}
 
@@ -24,8 +25,17 @@ public class StrategyBeanManager {
 		pickingReleaseInstructionSelection = StrategyBeanContext.pickingReleaseInstructionSelection.get(type);
 	}
 
+	public static void setInventoryAllocationType(EInventoryAllocationType type) {
+		inventoryAllocation = StrategyBeanContext.inventoryAllocationBeanMap.get(type.name());
+	}
+
+	public static void setPickingReleaseInstructionSelection(EPickingReleaseInstructionSelectionType type) {
+		pickingReleaseInstructionSelection = StrategyBeanContext.pickingReleaseInstructionSelection.get(type.name());
+	}
+
 	public void init(){
-		//재고할당 전략 get
+		setInventoryAllocationType("Test");
+		//TODO - context 올라갈 때 DB에서 해당 변수에 대한 전략을 get
 		this.inventoryAllocation = StrategyBeanContext.inventoryAllocationBeanMap.get(EInventoryAllocationType.LARGE_INVENTORY.name());
 		this.pickingReleaseInstructionSelection = StrategyBeanContext.pickingReleaseInstructionSelection.get(EPickingReleaseInstructionSelectionType.SIMILAR_PRODUCT.name());
 	}
