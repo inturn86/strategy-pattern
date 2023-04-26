@@ -34,7 +34,6 @@ public class StrategyBeanManager {
 	}
 
 	public void init(){
-		setInventoryAllocationType("Test");
 		//TODO - context 올라갈 때 DB에서 해당 변수에 대한 전략을 get
 		this.inventoryAllocation = StrategyBeanContext.inventoryAllocationBeanMap.get(EInventoryAllocationType.LARGE_INVENTORY.name());
 		this.pickingReleaseInstructionSelection = StrategyBeanContext.pickingReleaseInstructionSelection.get(EPickingReleaseInstructionSelectionType.SIMILAR_PRODUCT.name());
